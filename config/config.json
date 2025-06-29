@@ -18,7 +18,6 @@
         "AutoShake": true,
         "DeletePackPets": true,
         "GetClientID": true,
-        "GetLocalClientID": false,
         "GodMode": false,
         "HookKick": true,
         "InteractSeat": false,
