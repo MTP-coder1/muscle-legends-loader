@@ -35,7 +35,9 @@ function AutoItems.new(tab)
 end
 
 function AutoItems:Start()
-    if self.Running then return end
+    if self.Running then
+        return
+    end
     self.Running = true
     task.spawn(function()
         while self.Running do

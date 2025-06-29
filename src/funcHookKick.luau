@@ -1,7 +1,6 @@
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-
 local CONFIG = {
     ButtonTitle = "Enable Anti Kick",
     ButtonDescription = "Patches multiple kick methods.",
@@ -39,7 +38,8 @@ local function patchKick()
     mt.__index = function(self, key)
         if key == "Kick" then
             print(CONFIG.PrintPrefix, "Blocked Kick (method 3)")
-            return function() end
+            return function()
+            end
         end
         return oldIndex(self, key)
     end

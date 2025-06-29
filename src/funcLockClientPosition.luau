@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
-local LOCK_CONFIG = {
+local Config = {
     ToggleTitle = "Lock Client Position",
     ToggleDescription = "Locks your character's position in place until disabled."
 }
@@ -14,8 +14,8 @@ function LockClientPosition.new(tab)
     self.LockConnection = nil
     self.LockedCFrame = nil
     self.Toggle = tab:AddToggle("LockClientPositionToggle", {
-        Title = LOCK_CONFIG.ToggleTitle,
-        Description = LOCK_CONFIG.ToggleDescription,
+        Title = Config.ToggleTitle,
+        Description = Config.ToggleDescription,
         Default = false,
         Callback = function(state)
             local lp = Players.LocalPlayer

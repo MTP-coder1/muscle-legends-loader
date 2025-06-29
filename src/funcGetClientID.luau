@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local GET_CLIENT_ID_CONFIG = {
-    ClipboardFunc = setclipboard or toclipboard
+    ClipboardFunc = setclipboard
 }
 
 local GetClientID = {}

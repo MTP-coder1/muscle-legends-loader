@@ -13,7 +13,9 @@ function AutoRebirth.new()
 end
 
 function AutoRebirth:Start()
-    if self.Running then return end
+    if self.Running then
+        return
+    end
     self.Running = true
     task.spawn(function()
         while self.Running do

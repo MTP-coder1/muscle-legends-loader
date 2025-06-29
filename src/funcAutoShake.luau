@@ -30,16 +30,22 @@ function AutoShake.new(tab)
 end
 
 function AutoShake:Start()
-    if self.Running then return end
+    if self.Running then
+        return
+    end
     self.Running = true
     task.spawn(function()
         while self.Running do
             local timers = LocalPlayer:FindFirstChild(CONFIG.BoostFolder)
             local shakeTimer = timers and timers:FindFirstChild(CONFIG.Name)
             if shakeTimer and shakeTimer.Value > 0 then
-                repeat task.wait(1) until not self.Running or shakeTimer.Value == 0
+                repeat
+                    task.wait(1)
+                until not self.Running or shakeTimer.Value == 0
             end
-            if not self.Running then break end
+            if not self.Running then
+                break
+            end
             local backpack = LocalPlayer:FindFirstChild("Backpack")
             local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
             if backpack and character and not character:FindFirstChild(CONFIG.Name) then

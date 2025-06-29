@@ -8,12 +8,16 @@ local firetouchinterest = rawget(_G, "firetouchinterest") or getgenv().firetouch
 local AutoRocks = {}
 AutoRocks.__index = AutoRocks
 
--- CONFIG (You can add more Rocks if needed)
-local ROCK_CONFIGS = {
-    { Title = "Rock Of Legends" },
-    { Title = "Muscle King Mountain" },
-    { Title = "Ancient Jungle Rock" }
-}
+-- [ Rock Configurations ]
+-- These configurations can be extended or modified as needed.
+local ROCK_CONFIGS = {{
+    Title = "Rock Of Legends"
+}, {
+    Title = "Muscle King Mountain"
+}, {
+    Title = "Ancient Jungle Rock"
+}}
+
 local ROCK_NAMES = {}
 for _, cfg in ipairs(ROCK_CONFIGS) do
     table.insert(ROCK_NAMES, cfg.Title)
@@ -40,13 +44,17 @@ local function startFarmRock(_, rockName)
 
     farmThread = task.spawn(function()
         local machinesFolder = Workspace:FindFirstChild("machinesFolder")
-        if not machinesFolder then return end
+        if not machinesFolder then
+            return
+        end
 
         local player = LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
         local lHand = character:FindFirstChild("LeftHand")
         local rHand = character:FindFirstChild("RightHand")
-        if not lHand or not rHand then return end
+        if not lHand or not rHand then
+            return
+        end
 
         local rock = nil
         for _, v in ipairs(machinesFolder:GetDescendants()) do
@@ -59,7 +67,9 @@ local function startFarmRock(_, rockName)
             end
         end
 
-        if not rock then return end
+        if not rock then
+            return
+        end
 
         while getgenv().autoFarm and currFarmRock == rockName do
             if apEnabled and firetouchinterest then

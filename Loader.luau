@@ -1,9 +1,7 @@
 --[[
     Made by iamvyxon
     https://github.com/iamvyxon
-]] 
-
-local readfile = pcall(function()
+]] local readfile = pcall(function()
     return readfile
 end) and readfile or nil
 
@@ -80,7 +78,6 @@ local Config = {
         AutoShake = true,
         DeletePackPets = true,
         GetClientID = true,
-        GetLocalClientID = false,
         GodMode = false,
         HookKick = true,
         InteractSeat = false,
@@ -127,6 +124,7 @@ else
     return
 end
 
+-- Module registry (add more modules here as needed)
 local modules = {
     AutoEgg = {
         path = "src/funcAutoEgg.luau",
@@ -237,11 +235,6 @@ local modules = {
         path = "src/funcGetClientID.luau",
         tab = "Utility",
         title = "Get Client ID"
-    },
-    GetLocalClientID = {
-        path = "src/funcGetLocalClientID.luau",
-        tab = "Utility",
-        title = "Get Local Client ID"
     },
     GodMode = {
         path = "src/funcGodMode.luau",

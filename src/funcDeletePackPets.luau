@@ -24,7 +24,6 @@ function DeletePackPets.new(tab)
             for _, rarityFolder in pairs(petsFolder:GetChildren()) do
                 for _, pet in pairs(rarityFolder:GetChildren()) do
                     sellPetEvent:FireServer("sellPet", pet)
-                    -- print("Sold:", pet.Name, "from", rarityFolder.Name)
                 end
             end
         end
