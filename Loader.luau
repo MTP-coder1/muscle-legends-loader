@@ -1,7 +1,9 @@
 --[[
     Made by iamvyxon
     https://github.com/iamvyxon
-]] local readfile = pcall(function()
+]] 
+
+local readfile = pcall(function()
     return readfile
 end) and readfile or nil
 
@@ -78,34 +80,34 @@ local Config = {
         AutoShake = true,
         DeletePackPets = true,
         GetClientID = true,
-        GodMode = false,
+        GodMode = true,
         HookKick = true,
-        InteractSeat = false,
-        JoinBrawl = false,
+        InteractSeat = true,
+        JoinBrawl = true,
         LockClientPosition = true,
-        MaxUltimates = false,
-        NoPunchAnimation = false,
-        PackRebirth = false,
-        PetsSpin = false,
-        RandomNamer = false,
-        RemoveUIs = false,
-        ServerHop = false,
-        SetSize = false,
-        SetSpeed = false,
-        SpectatePlayer = false,
-        SpoofItems = false,
-        SpoofLeaderboardStats = false,
-        SpoofRarity = false,
-        SpoofSpins = false,
-        StatsSpoof = false,
-        StatsViewer = false,
-        SwitchPets = false,
-        TeleportToGyms = false,
-        TeleportToPlayer = false
+        MaxUltimates = true,
+        NoPunchAnimation = true,
+        PackRebirth = true,
+        PetsSpin = true,
+        RandomNamer = true,
+        RemoveUIs = true,
+        ServerHop = true,
+        SetSize = true,
+        SetSpeed = true,
+        SpectatePlayer = true,
+        SpoofItems = true,
+        SpoofLeaderboardStats = true,
+        SpoofRarity = true,
+        SpoofSpins = true,
+        StatsSpoof = true,
+        StatsViewer = true,
+        SwitchPets = true,
+        TeleportToGyms = true,
+        TeleportToPlayer = true
     }
 }
 
-local RAW_BASE = "https://raw.githubusercontent.com/iamvyxon/Source-Muscle-Legends/main/"
+local RAW_BASE = "https://raw.githubusercontent.com/iamvyxon/muscle-legends-loader/main/"
 local configURL = RAW_BASE .. "config/config.json"
 local config, err = fetchJSONRaw(configURL)
 if not config then
@@ -124,7 +126,6 @@ else
     return
 end
 
--- Module registry (add more modules here as needed)
 local modules = {
     AutoEgg = {
         path = "src/funcAutoEgg.luau",
@@ -313,6 +314,11 @@ UIManager.__index = UIManager
 
 function UIManager.new()
     local self = setmetatable({}, UIManager)
+    self:createWindowAndTabs()
+    return self
+end
+
+function UIManager:createWindowAndTabs()
     self.Window = Fluent:CreateWindow({
         Title = config.WindowTitle or "Muscle Legends V1 Loader",
         SubTitle = config.SubTitle or "",
@@ -322,7 +328,6 @@ function UIManager.new()
         Theme = config.Theme or "Dark",
         MinimizeKey = Enum.KeyCode.LeftControl
     })
-    -- [ YOU CAN CUSTOMIZE THIS ]
     self.Tabs = {
         Main = self.Window:AddTab({
             Title = "Main",
@@ -353,7 +358,6 @@ function UIManager.new()
         Title = "Watermark",
         Content = "Made by iamvyxon | github.com/iamvyxon | Discord: @iamvyxon | Telgram: @vyxooo"
     })
-    return self
 end
 
 function UIManager:setup()
@@ -372,8 +376,8 @@ function UIManager:setup()
     for feature, data in pairs(modules) do
         local enabled = config.Features and config.Features[feature]
         local module = fetchModuleRaw(RAW_BASE .. data.path)
-        if module and module.AddUI then
-            self.ModuleInstances[feature] = module.AddUI(Tabs[data.tab])
+        if module and module.new then
+            self.ModuleInstances[feature] = module.new(Tabs[data.tab])
         else
             Tabs[data.tab]:AddToggle("Toggle_" .. feature, {
                 Title = data.title .. (not module and " (Module Missing)" or ""),
@@ -419,6 +423,9 @@ function UIManager:addSettings()
             local newConfig, err = fetchJSONRaw(configURL)
             if newConfig then
                 config = newConfig
+                self:setup()
+                self:addSettings()
+                self.Window:SelectTab(1)
                 Fluent:Notify({
                     Title = "Config Reloaded",
                     Content = "Configuration reloaded successfully.",
