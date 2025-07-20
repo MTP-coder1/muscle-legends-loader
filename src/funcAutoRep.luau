@@ -4,7 +4,7 @@ local LocalPlayer = Players.LocalPlayer
 local AutoRep = {}
 AutoRep.__index = AutoRep
 
-local REP_DELAY = 0.0001
+local REP_DELAY = 0.00001
 
 function AutoRep.new(tab)
     local self = setmetatable({}, AutoRep)
