@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local Config = {
-    PunchInterval = 0.025
+    PunchInterval = 0.0001
 }
 
 local NoPunchAnimation = {}
