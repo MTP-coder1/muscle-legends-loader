@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-local ITEM_FIRE_DELAY = 0.05
+local ITEM_FIRE_DELAY = 0.001
 local LOOP_DELAY = 0.05
 
 local items = {
