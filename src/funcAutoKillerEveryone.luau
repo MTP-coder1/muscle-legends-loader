@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local TOOL_NAME = "Punch"
-local PUNCH_DELAY = 0.025
+local PUNCH_DELAY = 0.000001
 
 local firetouchinterest = rawget(_G, "firetouchinterest") or getgenv().firetouchinterest
 
