@@ -23,7 +23,7 @@ function AutoRebirth:Start()
             local rebirths = leaderstats and leaderstats:FindFirstChild("Rebirths")
             if rebirths and rebirths.Value < self.TargetRebirth then
                 ReplicatedStorage.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-                task.wait(0.2)
+                task.wait(0.01)
             else
                 break
             end
