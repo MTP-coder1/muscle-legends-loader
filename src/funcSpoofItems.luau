@@ -4,7 +4,7 @@ local LocalPlayer = Players.LocalPlayer
 local Config = {
     SpoofSpins = 9999, -- [ Default: 9999 ] -- Amount of spins to spoof
     SpoofPetCapacity = 99999, -- [ Default: 99999 ] -- Amount of pet capacity to spoof
-    SpoofInventory = true -- [ Default: false ] -- Whether to spoof pet inventory
+    SpoofInventory = false -- [ Default: false ] -- Whether to spoof pet inventory
 }
 
 local SpoofItems = {}
