@@ -77,7 +77,7 @@ local function startFarmRock(_, rockName)
                 firetouchinterest(rock, lHand, 1)
                 firetouchinterest(rock, rHand, 1)
                 firetouchinterest(rock, lHand, 0)
-                task.wait(0.01)
+                task.wait(0.001)
             end
             task.wait(0.25)
         end
